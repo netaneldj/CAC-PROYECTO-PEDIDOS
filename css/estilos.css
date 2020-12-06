@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600');
 
-
-
 * {
     margin: 0px;
     padding: 0px;
@@ -9,36 +7,32 @@
 
 body {
   background: #ffffff;
-  overflow-x: hidden;
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+p {
+		margin-top:15px;
 }
 
 hr {
 	background-color: orange;
 	height:15px;
 	margin-bottom:-1px;
-	margin-top:  -1px;
+	margin-top: -1px;
 }
-
-
-p {
-		margin-top:15px;
-}
-
-
 #header{
     margin: 0px 0px;
     width: 500px;
+    //font-family: Arial, Helvetica, sans-serif;
     position:fixed;
     z-index:2;
 	text-align:right;
 }
 
-
 ul, ol {
     list-style:none;
 }
-
 
 .nav li a {
         background-color: rgb(11, 10, 12);
@@ -48,15 +42,11 @@ ul, ol {
         display: block;
 }
 
-
-
 .nav li a:hover{
 
     background-color: rgb(58, 58, 36);
 
 }
-
-
 
 .nav > li {
         float: left;
@@ -81,14 +71,12 @@ ul, ol {
     top:0px;
 }
 
-
 .imagen{
 	z-index:1;
     position:relative;
     margin: 0px;
 
 }
-
 
 .texto{
 	z-index:1;
@@ -97,5 +85,3 @@ ul, ol {
 	text-align:justify
 
 }
-
-
