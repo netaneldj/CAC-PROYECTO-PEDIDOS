@@ -7,6 +7,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -44,7 +45,10 @@ public class checkuser extends HttpServlet {
             Persistencia db = new Persistencia();
             Connection con = db.getCon();
             Statement stmt = con.createStatement();
+            ResultSet rs;
+            
             stmt.executeUpdate("insert into usuarios (usuario, clave, nombre) VALUES ('"+uname+"', '"+pass+"', '"+uname+"')");
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -54,6 +58,14 @@ public class checkuser extends HttpServlet {
             out.println("<h1>CheckUser at " + request.getContextPath() + "</h1>");
             out.println("<h2>El usuario es: " + request.getParameter("inputEmail") + "</h2>");           
             out.println("Usuario insertado");            
+            
+            out.println("<h3>Lista de Usuarios</h3>");           
+            rs = stmt.executeQuery("select usuario from usuarios");
+            rs.next();
+            do {
+                out.println("<p>"+rs.getString("usuario")+"</p>");
+            } while(rs.next());            
+            
             out.println("</body>");
             out.println("</html>");
         } catch (SQLException ex) {
