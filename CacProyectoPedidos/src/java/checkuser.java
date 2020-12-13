@@ -6,6 +6,11 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,16 +38,26 @@ public class checkuser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String uname = request.getParameter("inputEmail");
+            String pass = request.getParameter("inputPassword");
+            
+            Persistencia db = new Persistencia();
+            Connection con = db.getCon();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("insert into usuarios (usuario, clave, nombre) VALUES ('"+uname+"', '"+pass+"', '"+uname+"')");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Checkuser Proyecto Pedidos</title>");            
+            out.println("<title>Registro Usuario Pedidos</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>CheckUser at " + request.getContextPath() + "</h1>");
-            out.println("<h2>El usuario es: " + request.getParameter("inputEmail") + "</h2>");            
+            out.println("<h2>El usuario es: " + request.getParameter("inputEmail") + "</h2>");           
+            out.println("Usuario insertado");            
             out.println("</body>");
             out.println("</html>");
+        } catch (SQLException ex) {
+            Logger.getLogger(checkuser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
